@@ -9,8 +9,8 @@ namespace RecipeApi
         public string Name { get; set; }
         public int Calories { get; set; }
         public List<Ingredient> Ingredients { get; set; }
-        public string Instructions { get; set; }
+        public List<Instruction> Instructions { get; set; }
 
-        public override string ToString() => $"id/{Id}, foodName/{Name}, calories/{Calories}";
+        public override string ToString() => $"id/{Id}, name/{Name}, calories/{Calories}";
     }
 }

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace RecipeApi
 {
-    public class Ingredient
+    public class Instruction
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Text { get; set; }
         public List<Recipe> Recipe { get; set; }
 
-        public override string ToString() => $"id/{Id}, name/{Name}";
+        public override string ToString() => $"id/{Id}, text/{Text}";
     }
 }

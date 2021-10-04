@@ -20,14 +20,29 @@ namespace RecipeApi.Migrations
                     b.Property<int>("IngredientsId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("RecipesId")
+                    b.Property<int>("RecipeId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("IngredientsId", "RecipesId");
+                    b.HasKey("IngredientsId", "RecipeId");
 
-                    b.HasIndex("RecipesId");
+                    b.HasIndex("RecipeId");
 
                     b.ToTable("IngredientRecipe");
+                });
+
+            modelBuilder.Entity("InstructionRecipe", b =>
+                {
+                    b.Property<int>("InstructionsId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("InstructionsId", "RecipeId");
+
+                    b.HasIndex("RecipeId");
+
+                    b.ToTable("InstructionRecipe");
                 });
 
             modelBuilder.Entity("RecipeApi.Ingredient", b =>
@@ -36,12 +51,26 @@ namespace RecipeApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Name")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Ingredient");
+                    b.ToTable("Ingredients");
+                });
+
+            modelBuilder.Entity("RecipeApi.Instruction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Instructions");
                 });
 
             modelBuilder.Entity("RecipeApi.Recipe", b =>
@@ -52,9 +81,6 @@ namespace RecipeApi.Migrations
 
                     b.Property<int>("Calories")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("Instructions")
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
@@ -74,7 +100,22 @@ namespace RecipeApi.Migrations
 
                     b.HasOne("RecipeApi.Recipe", null)
                         .WithMany()
-                        .HasForeignKey("RecipesId")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("InstructionRecipe", b =>
+                {
+                    b.HasOne("RecipeApi.Instruction", null)
+                        .WithMany()
+                        .HasForeignKey("InstructionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RecipeApi.Recipe", null)
+                        .WithMany()
+                        .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
