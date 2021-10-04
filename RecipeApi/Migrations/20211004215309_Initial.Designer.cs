@@ -8,7 +8,7 @@ using RecipeApi;
 namespace RecipeApi.Migrations
 {
     [DbContext(typeof(Database))]
-    [Migration("20211004214959_Initial")]
+    [Migration("20211004215309_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,12 +22,12 @@ namespace RecipeApi.Migrations
                     b.Property<int>("IngredientsId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("RecipeId")
+                    b.Property<int>("RecipesId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("IngredientsId", "RecipeId");
+                    b.HasKey("IngredientsId", "RecipesId");
 
-                    b.HasIndex("RecipeId");
+                    b.HasIndex("RecipesId");
 
                     b.ToTable("IngredientRecipe");
                 });
@@ -37,12 +37,12 @@ namespace RecipeApi.Migrations
                     b.Property<int>("InstructionsId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("RecipeId")
+                    b.Property<int>("RecipesId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("InstructionsId", "RecipeId");
+                    b.HasKey("InstructionsId", "RecipesId");
 
-                    b.HasIndex("RecipeId");
+                    b.HasIndex("RecipesId");
 
                     b.ToTable("InstructionRecipe");
                 });
@@ -102,7 +102,7 @@ namespace RecipeApi.Migrations
 
                     b.HasOne("RecipeApi.Recipe", null)
                         .WithMany()
-                        .HasForeignKey("RecipeId")
+                        .HasForeignKey("RecipesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -117,7 +117,7 @@ namespace RecipeApi.Migrations
 
                     b.HasOne("RecipeApi.Recipe", null)
                         .WithMany()
-                        .HasForeignKey("RecipeId")
+                        .HasForeignKey("RecipesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

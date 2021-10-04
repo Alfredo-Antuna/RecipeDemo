@@ -7,7 +7,7 @@ namespace RecipeApi
     {
         public int Id { get; set; }
         public string Text { get; set; }
-        public List<Recipe> Recipe { get; set; }
+        public List<Recipe> Recipes { get; set; }
 
         public override string ToString() => $"id/{Id}, text/{Text}";
     }
